@@ -69,4 +69,31 @@ fi
      echo "$PROJECT_NAME --- : end"
 }
 
-main
+
+if [ $# -eq 0 ]
+  then
+    main_run
+  else
+          if [ "$1" = "re" ]; then
+          cd $PATH_PROJECT
+          shotdown
+          echo "startup"  
+          startup
+          fi
+          if [ "$1" = "pull" ]; then
+          cd $PATH_GIT
+          echo "$PROJECT_NAME --- : git pull"
+          git pull
+          fi
+          if [ "$1" = "run" ]; then
+          cd $PATH_GIT
+          echo "$PROJECT_NAME --- : git pull"
+          git pull
+          build
+          cd $PATH_PROJECT
+          shotdown
+          startup
+          cd $PATH_PROJECT
+          check_run
+          fi
+fi
